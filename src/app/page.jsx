@@ -3,16 +3,16 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useSearchParams } from 'next/navigation'
-import { useState} from 'react';
+import { Suspense, useState} from 'react';
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
-
 export default function Home() {
   const [open, setOpen] = useState(false)
   const { width, height } = useWindowSize()
   const searchParams = useSearchParams()
   const search = searchParams.get('nombre')
   return (
+    <Suspense>
       <main className={styles.main}>
           {
             open &&     
@@ -39,6 +39,9 @@ export default function Home() {
           open && <PopUp />
         }
       </main>
+
+    </Suspense>
+
 
   );
 }
