@@ -4,8 +4,6 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useState} from 'react';
-import { useWindowSize } from 'react-use'
-import Confetti from 'react-confetti'
 
 function Search() {
   const searchParams = useSearchParams()
@@ -16,18 +14,9 @@ function Search() {
 
 export default function Home() {
   const [open, setOpen] = useState(false)
-  const { width, height } = useWindowSize()
   return (
     <Suspense fallback={<div>Cargando...</div>}> 
       <main className={styles.main}>
-          {
-            open &&     
-              <Confetti
-                width={width}
-                height={height}
-              />
-          }
-
         <h1 className={styles.header}>Holaaa {Search()}</h1>
         <Image
           src="/cuh.png"
@@ -47,8 +36,6 @@ export default function Home() {
       </main>
 
     </Suspense>
-
-
   );
 }
 
