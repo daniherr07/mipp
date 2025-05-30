@@ -6,13 +6,19 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense, useState} from 'react';
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
+
+function Search() {
+  const searchParams = useSearchParams()
+  const search = searchParams.get('nombre')
+ 
+  return search
+}
+
 export default function Home() {
   const [open, setOpen] = useState(false)
   const { width, height } = useWindowSize()
-  const searchParams = useSearchParams()
-  const search = searchParams.get('nombre')
   return (
-    <Suspense>
+    <Suspense fallback={<div>Cargando...</div>}> 
       <main className={styles.main}>
           {
             open &&     
@@ -22,7 +28,7 @@ export default function Home() {
               />
           }
 
-        <h1 className={styles.header}>Holaaa {search}</h1>
+        <h1 className={styles.header}>Holaaa {Search()}</h1>
         <Image
           src="/cuh.png"
           width={200}
